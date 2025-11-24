@@ -1,0 +1,107 @@
+# Caretaker App Demo Presentation Script
+
+---
+
+**Presenter 1 (Alex):**
+Hi everyone, welcome to our demo of the Caretaker App! I’m Alex.
+
+**Presenter 2 (Dana):**
+And I’m Dana. Today, we’ll walk you through setting up the project, populating it with data, and using both the interactive SQL tool and our REST API.
+
+---
+
+**Alex:**
+Let’s start with the environment setup. First, we need to make sure MySQL is installed and running. On macOS, you can do this with our script:
+
+```
+sh setup_mysql.sh
+```
+
+**Dana:**
+Next, we set up our Python virtual environment and install all dependencies:
+
+```
+sh setup_venv.sh
+```
+
+---
+
+**Alex:**
+Once that’s done, we need to prepare the database. Make sure you’ve created a MySQL user and database, and updated the credentials in `settings.py`.
+
+**Dana:**
+With that in place, we can run Django migrations:
+
+```
+python manage.py migrate
+```
+
+And if you want admin access, create a superuser:
+
+```
+python manage.py createsuperuser
+```
+
+---
+
+**Alex:**
+Now, let’s fill our database with some realistic demo data. We’ve included a management command for this:
+
+```
+python manage.py populate_caregiver
+```
+
+**Dana:**
+This will generate users, caregivers, members, jobs, and more, all with realistic Russian and Kazakh names.
+
+---
+
+**Alex:**
+For those who want to run custom SQL queries, we’ve built an interactive script. Just run:
+
+```
+python execute_queries.py
+```
+
+**Dana:**
+You’ll be prompted to enter DDL, DML, SELECT, or even complex queries, and see the results right in your terminal.
+
+---
+
+**Alex:**
+Now, let’s look at the API. Start the Django server:
+
+```
+python manage.py runserver
+```
+
+**Dana:**
+All our models are exposed via REST endpoints under `/api/`. For example, to list all caregivers:
+
+```
+curl http://127.0.0.1:8000/api/caregivers/
+```
+
+Or to create a new member:
+
+```
+curl -X POST http://127.0.0.1:8000/api/members/ \
+    -H "Content-Type: application/json" \
+    -d '{"first_name": "Айгуль", "last_name": "Серикова", "email": "a.serikova@example.com"}'
+```
+
+---
+
+**Alex:**
+Don’t forget, you can also log in to the Django admin at `http://127.0.0.1:8000/admin/` to manage all your data through the web interface.
+
+**Dana:**
+And that’s our demo! If you have any questions or want to see a specific feature, let us know.
+
+---
+
+**Alex:**
+Thanks for watching!
+
+**Dana:**
+Thank you!
