@@ -89,7 +89,7 @@ queries = [
 		FOREIGN KEY (member_id) REFERENCES caregiver_member(id) ON DELETE CASCADE
 	);
 	"""),
-	# 2.1: Insert 10 demo users into caregiver_user (including Arman Armanov)
+	# 2.1: Insert 10 demo users into caregiver_user
 	("2.1", """
 	INSERT INTO caregiver_user (id, email, given_name, surname, city, phone_number, profile_description) VALUES
 	(1001, 'arman.armanov@example.com', 'Arman', 'Armanov', 'Astana', '+77773414551', 'Experienced caregiver and user of the system'),
@@ -208,8 +208,16 @@ queries = [
 		ELSE hourly_rate * 1.10
 	END;
 	"""),
-	# 4.1: Delete jobs for members named 'Amina Aminova'
+	# 4.1: Delete job applications for jobs belonging to members named 'Amina Aminova', then delete the jobs themselves
 	("4.1", """
+	DELETE FROM caregiver_job_application
+	WHERE job_id IN (
+		SELECT id FROM caregiver_job
+		WHERE member_id IN (
+			SELECT id FROM caregiver_member WHERE name = 'Amina Aminova'
+		)
+	);
+
 	DELETE FROM caregiver_job
 	WHERE member_id IN (
 		SELECT id FROM caregiver_member WHERE name = 'Amina Aminova'
