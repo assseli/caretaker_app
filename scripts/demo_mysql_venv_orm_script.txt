@@ -1,0 +1,103 @@
+# Demo Script: Setting Up MySQL, Python Virtual Environment, and Using an ORM in Python
+
+---
+
+**Presenter:**
+Welcome! In this demo, I’ll show you how to set up MySQL, create a Python virtual environment, and introduce the concept of an ORM (Object-Relational Mapping) in Python. We’ll also see a simple example of using an ORM to interact with a database.
+
+---
+
+## 1. Setting Up MySQL
+
+- **Install MySQL (macOS/Homebrew):**
+  ```
+  sh setup_mysql.sh
+  ```
+  This script installs MySQL and starts the service. If you’re on another OS, follow the appropriate installation instructions.
+
+- **Access MySQL:**
+  ```
+  mysql -u root -p
+  ```
+  Enter your password when prompted. You can now create databases and users as needed.
+
+---
+
+## 2. Setting Up a Python Virtual Environment
+
+- **Create and Activate the Virtual Environment:**
+  ```
+  sh setup_venv.sh
+  ```
+  This script creates a virtual environment and installs all required dependencies from `requirements.txt`.
+
+- **Manual Steps (if needed):**
+  ```
+  python3 -m venv venv
+  source venv/bin/activate
+  pip install -r requirements.txt
+  ```
+
+---
+
+## 3. What is an ORM?
+
+- **Definition:**
+  ORM stands for Object-Relational Mapping. It’s a technique that lets you interact with your database using Python classes and objects instead of writing raw SQL queries.
+- **Why use an ORM?**
+  - Write database code in Python, not SQL
+  - Automatic translation between Python objects and database tables
+  - Safer and easier to maintain
+  - Enables database-agnostic code
+
+---
+
+## 4. Using an ORM in Python (Example with SQLAlchemy)
+
+- **Install SQLAlchemy (already in requirements.txt):**
+  ```
+  pip install sqlalchemy pymysql
+  ```
+
+- **Sample ORM Code:**
+  ```python
+  from sqlalchemy import create_engine, Column, Integer, String
+  from sqlalchemy.ext.declarative import declarative_base
+  from sqlalchemy.orm import sessionmaker
+
+  # Define the database connection
+  engine = create_engine('mysql+pymysql://root:yourpassword@localhost:3306/yourdb')
+  Base = declarative_base()
+
+  # Define a model (table)
+  class User(Base):
+      __tablename__ = 'users'
+      id = Column(Integer, primary_key=True)
+      name = Column(String(50))
+      email = Column(String(100))
+
+  # Create the table
+  Base.metadata.create_all(engine)
+
+  # Create a session
+  Session = sessionmaker(bind=engine)
+  session = Session()
+
+  # Add a new user
+  new_user = User(name='Alice', email='alice@example.com')
+  session.add(new_user)
+  session.commit()
+
+  # Query users
+  users = session.query(User).all()
+  for user in users:
+      print(user.id, user.name, user.email)
+  ```
+- **Explanation:**
+  - Define Python classes for your tables.
+  - Use the ORM to create tables, insert, and query data—all in Python.
+
+---
+
+**Presenter:**
+That’s it! You’ve seen how to set up MySQL, a Python environment, and use an ORM to work with your database in Python. This approach is powerful, safe, and easy to maintain. Thank you!
