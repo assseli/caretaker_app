@@ -1,107 +1,81 @@
-# Caretaker App Demo Presentation Script
+# Caretaker App Demo Presentation Script – Part 1
 
 ---
 
-**Presenter 1 (Alex):**
-Hi everyone, welcome to our demo of the Caretaker App! I’m Alex.
-
-**Presenter 2 (Dana):**
-And I’m Dana. Today, we’ll walk you through setting up the project, populating it with data, and using both the interactive SQL tool and our REST API.
+**Assel:**
+Hello everyone, I’m Assel, and I’ll be guiding you through the first part of our Caretaker App demo. Today, we’ll focus on setting up the project environment, understanding what an ORM is, and exploring our interactive SQL tool.
 
 ---
 
-**Alex:**
-Let’s start with the environment setup. First, we need to make sure MySQL is installed and running. On macOS, you can do this with our script:
+Let’s begin with the project setup. We’ve made this as easy as possible with two scripts:
 
-```
-sh setup_mysql.sh
-```
+1. **Install and start MySQL:**
+    ```
+    sh setup_mysql.sh
+    ```
+    This script installs MySQL using Homebrew and ensures the service is running.
 
-**Dana:**
-Next, we set up our Python virtual environment and install all dependencies:
+2. **Set up the Python virtual environment and install dependencies:**
+    ```
+    sh setup_venv.sh
+    ```
+    This creates a virtual environment and installs all required Python packages, including Django, MySQL drivers, and more.
 
-```
-sh setup_venv.sh
-```
-
----
-
-**Alex:**
-Once that’s done, we need to prepare the database. Make sure you’ve created a MySQL user and database, and updated the credentials in `settings.py`.
-
-**Dana:**
-With that in place, we can run Django migrations:
-
-```
-python manage.py migrate
-```
-
-And if you want admin access, create a superuser:
-
-```
-python manage.py createsuperuser
-```
+At this point, you have a working database and Python environment. We haven’t touched Django yet—this is just the foundation.
 
 ---
 
-**Alex:**
-Now, let’s fill our database with some realistic demo data. We’ve included a management command for this:
+Now, before we move on, let’s talk about what an ORM is.
 
-```
-python manage.py populate_caregiver
-```
+**ORM** stands for **Object-Relational Mapping**. It’s a technique that lets you interact with your database using Python objects instead of writing raw SQL. In Django, the ORM allows you to define your data models as Python classes, and Django takes care of translating your actions into SQL queries behind the scenes. This makes database operations safer, more maintainable, and easier to read.
 
-**Dana:**
-This will generate users, caregivers, members, jobs, and more, all with realistic Russian and Kazakh names.
+But sometimes, you still want to run custom SQL—maybe for learning, debugging, or advanced queries. That’s where our next tool comes in.
 
 ---
 
-**Alex:**
-For those who want to run custom SQL queries, we’ve built an interactive script. Just run:
+Let’s look at our interactive SQL script: `execute_queries.py`.
 
+To start it, just run:
 ```
 python execute_queries.py
 ```
 
-**Dana:**
-You’ll be prompted to enter DDL, DML, SELECT, or even complex queries, and see the results right in your terminal.
+You’ll be prompted to enter different types of SQL queries. Let’s walk through a few examples together:
+
+1. **DDL (Data Definition Language) Query:**
+    - Example: Creating a new table.
+    - Input:
+      ```
+      CREATE TABLE test_table (id INT PRIMARY KEY, name VARCHAR(50));
+      ```
+    - This command creates a simple table. The script will show you if it succeeded or if there were any errors.
+
+2. **DML (Data Manipulation Language) Query:**
+    - Example: Inserting data.
+    - Input:
+      ```
+      INSERT INTO test_table (id, name) VALUES (1, 'Demo User');
+      ```
+    - This adds a row to the table. Again, you’ll see confirmation or error output.
+
+3. **SELECT Query:**
+    - Example: Retrieving data.
+    - Input:
+      ```
+      SELECT * FROM test_table;
+      ```
+    - The script will display the results in a readable format.
+
+4. **Complex Query:**
+    - Example: Joining tables or using aggregate functions.
+    - Input:
+      ```
+      SELECT COUNT(*) FROM test_table;
+      ```
+    - This shows how you can run more advanced queries and immediately see the results.
+
+You can repeat this process for any SQL you want to try. The script is designed to help you experiment and learn, with clear feedback for each query.
 
 ---
 
-**Alex:**
-Now, let’s look at the API. Start the Django server:
-
-```
-python manage.py runserver
-```
-
-**Dana:**
-All our models are exposed via REST endpoints under `/api/`. For example, to list all caregivers:
-
-```
-curl http://127.0.0.1:8000/api/caregivers/
-```
-
-Or to create a new member:
-
-```
-curl -X POST http://127.0.0.1:8000/api/members/ \
-    -H "Content-Type: application/json" \
-    -d '{"first_name": "Айгуль", "last_name": "Серикова", "email": "a.serikova@example.com"}'
-```
-
----
-
-**Alex:**
-Don’t forget, you can also log in to the Django admin at `http://127.0.0.1:8000/admin/` to manage all your data through the web interface.
-
-**Dana:**
-And that’s our demo! If you have any questions or want to see a specific feature, let us know.
-
----
-
-**Alex:**
-Thanks for watching!
-
-**Dana:**
-Thank you!
+That’s the end of Part 1. In the next part, we’ll dive into Django, the ORM in action, and our REST API. Thank you!
