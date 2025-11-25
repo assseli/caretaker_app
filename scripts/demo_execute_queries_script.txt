@@ -1,75 +1,27 @@
-# Demo Script: Interactive SQL with execute_queries.py
+############################################################
+# Demo: Using the execute_queries.py Script
+#
+# Introduction:
+# The `execute_queries.py` script is designed to help you interactively execute SQL queries against your project's database. It can be used to create tables, insert data, and run SELECT statements to view or manage your data. This is especially useful for testing, debugging, or manually managing your database during development.
+#
+# Demo Steps:
+# 1. Open your MySQL terminal or client.
+# 2. Select the target database using the `USE` statement.
+# 3. Run a SQL query to fetch all users from the `app_user` table.
+# 4. View the results in your terminal.
+#
+# The following steps demonstrate how to fetch all users from the database:
+############################################################
 
----
+# 1. Open MySQL Terminal
+#    (e.g., run: mysql -u AsselDerbisova -p)
+#     password mySql2@24
 
-**Presenter:**
----
+# 2. Select the Database
+USE caregiver_db;
 
-## 1. Starting the Script
+# 3. Fetch All Users
+SELECT * FROM app_user;
 
-First, make sure your MySQL server is running and your environment is set up. Then, in your terminal, run:
-
-```
-python execute_queries.py
-```
-
-You’ll see a series of queries, each labeled and printed out for you. For each one, you’ll be prompted:
-
-```
-Execute this query? [y/n]:
-```
-
-Just press Enter (or type 'y') to run the query, or 'n' to skip it.
-
----
-
-## 2. Demo Flow
-
-### a. Table Creation (DDL)
-- The first queries create all the necessary tables for the app.
-- Example prompt:
-  - "Query 1.1: CREATE TABLE IF NOT EXISTS caregiver_user ..."
-- Press Enter to execute. If the table already exists, nothing will change.
-
-### b. Data Insertion (DML)
-- Next, you’ll see bulk INSERT statements for each table, including realistic demo data.
-- Example prompt:
-  - "Query 2.1: INSERT INTO caregiver_user ..."
-- Press Enter to populate the tables. You’ll see a green message showing how many rows were affected.
-
-### c. Updates and Deletes
-- The script will offer UPDATE and DELETE queries to modify or remove data.
-- Example:
-  - "Query 3.1: UPDATE caregiver_user ..."
-- Again, press Enter to run and see the result.
-
-### d. SELECT and Complex Queries
-- The later queries are SELECT statements, including joins and aggregations.
-- When you run these, the results will be printed in green for visibility.
-- Example:
-  - "Query 5.1: SELECT c.name AS caregiver_name, m.name AS member_name ..."
-- You’ll see the output rows directly in your terminal.
-
----
-
-## 3. Tips for the Demo
-- You can skip any query by typing 'n' at the prompt.
-- If you just press Enter, the query will run (default is yes).
-- All results for SELECT queries are shown in green for easy reading.
-- For INSERT/UPDATE/DELETE, you’ll see how many rows were affected, also in green.
-- If a query returns no results, you’ll see "No results."
-- If there’s an error (e.g., a constraint violation), the error message will be shown.
-
----
-
-## 4. Example Demo Sequence
-1. Run all table creation queries (press Enter for each).
-2. Run all data insertion queries (press Enter for each).
-3. Run a few UPDATE/DELETE queries to show changes.
-4. Run SELECT queries to display data and relationships.
-5. Optionally, skip a query to show that skipping is possible.
-
----
-
-**Presenter:**
-That’s it! With `execute_queries.py`, you can interactively build, populate, and query your database, all from the terminal. It’s a great way to learn SQL and see how your data changes in real time. Thanks for watching!
+# 4. View Results
+#    The output will display all rows and columns from the app_user table.

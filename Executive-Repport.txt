@@ -1,0 +1,40 @@
+Assel Derbissova and Ayaulym Zhumagul
+
+What is done:
+we created a caregiver platform (Database and API using Django and MySQL)
+we submitted a video in 3 parts:
+1) Assel: MySql and Python setup om MacOs using bash scripts, this gave us a physical database to work with using sqlalchemy.
+2) Assel: Executing the SQL queries using a python script to incrementally setup and alter the database as needed, while printing the results to the screen.
+3) Ayau: Showcasing how to host the platform app on PythonAnywhere, and using a bash script to demo CRUD operations.
+
+we will also submit the following:
+1) execute_queries.py (the main script that will run the queries on the mysql database)
+Script tasks:
+- Connect to the database using sqlalchemy (provided the credentials)
+- Create the tables as specified in the DB design diagram
+- Populate them with data fit for demostration purposes.
+- Execute Select, Update, Delete queries
+- Execute complex queries as provided in the assignment
+- Commit the changes to the DB
+
+2) The MySql export file (.sql) using the pg_dump utility
+
+Created a Django App that uses a local MySql server (logs in with basic creds), this Django app will serve as an API
+using the Django REST framework lib so that we can create the views, serializers and url's.
+an endpoint was created foreach model:
+- `/api/users/`
+- `/api/caregivers/`
+- `/api/members/`
+- `/api/caretypes/`
+- `/api/addresses/`
+- `/api/job_ads/`
+- `/api/job_applications/`
+- `/api/appointments/`
+- `/api/messages/`
+
+this app is then hosted on PythonAnywhere.com which is a free public hosting service for web apps.
+then for the demo we used a bash script to do CRUD operations on the caregiver api endpoint.
+
+this section will explain the database design and decisions made.
+added message table for messaging functionality
+added status to some tables

@@ -1,0 +1,52 @@
+# Demo Script: Showcasing Django Hosting on PythonAnywhere (with SQLite)
+
+---
+
+## 1. Introduction
+Welcome! In this demo, we’ll showcase how the Django app is hosted live on PythonAnywhere using SQLite as the database. We’ll also perform live CRUD operations on the deployed app using our `demo_crud.sh` script.
+
+---
+
+## 2. PythonAnywhere Hosting Overview
+- The Django project is uploaded to PythonAnywhere.
+- The app uses SQLite for its database (no server setup required).
+- Static files are collected and mapped in the PythonAnywhere Web tab.
+- The Database is populated with dummy data using the console
+- The app is accessible at: https://asselderbisova.pythonanywhere.com/
+
+---
+
+## 3. Showcasing the Live Django App
+- Open the browser and visit: https://asselderbisova.pythonanywhere.com/
+- Show the Django admin at: https://asselderbisova.pythonanywhere.com/admin/
+- Point out that the app is running live, and the admin interface is fully functional.
+
+---
+
+## 4. Performing CRUD Operations via API
+- We’ll use the `demo_crud.sh` script to interact with the live API endpoints.
+- The script will:
+  1. Create a new caregiver (with Kazakh names)
+  2. Read the caregiver
+  3. Update the caregiver
+  4. Delete the caregiver
+  5. List all caregivers
+
+- Run the script:
+  ```sh
+  sh demo_crud.sh
+  ```
+- Show the output in the terminal, demonstrating that the API is live and functional.
+---
+
+## 5. How Django REST API Works (Short Overview)
+
+- Django REST Framework allows you to build web APIs easily on top of Django models.
+- It provides endpoints (URLs) that accept HTTP requests (GET, POST, PUT, PATCH, DELETE) and return data in JSON format.
+- Each model can have a serializer (to convert between Python objects and JSON) and a viewset (to handle CRUD operations).
+- The API endpoints are defined in `urls.py` and are accessible to any HTTP client (browser, curl, Postman, etc.).
+- This makes it easy to connect your Django backend to web frontends, mobile apps, or other systems.
+
+---
+
+Thank you for watching the demo!
